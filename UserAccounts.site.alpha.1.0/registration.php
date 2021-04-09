@@ -17,18 +17,18 @@ require_once('config.php');
     <div>
         <?php
         if (isset($_POST['create'])) {
+            $username = $_POST['username'];
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
-            $middlename = $_POST['middlename'];
-            $username = $_POST['username'];
-            $mobile = $_POST['mobile'];
-            $city = $_POST['city'];
             $email = $_POST['email'];
+            $mobile = $_POST['mobile'];
             $password = $_POST['password'];
+            $city = $_POST['city'];
+            $middlename = $_POST['middlename'];
 
-            $sql = "INSERT INTO users (firstname, lastname, middlename, city, email, mobile, password, username ) VALUES(?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO users (username, firstname, lastname, email, mobile, password, city,  middlename  ) VALUES(?,?,?,?,?,?,?,?)";
             $stmtinsert = $db->prepare($sql);
-            $result = $stmtinsert->execute([$firstname, $lastname, $middlename, $mobile, $city, $email, $password, $username]);
+            $result = $stmtinsert->execute([$username, $firstname, $lastname, $email,   $mobile, $password, $city,  $middlename]);
             if ($result) {
                 echo 'Hima Welcome You';
             } else {
@@ -50,7 +50,7 @@ require_once('config.php');
                         <input class="form-control" type="text" name="firstname" required>
 
                         <label for="middlename"><b>Maddle Name</b></label>
-                        <input class="form-control" type="text" name="maddlename" required>
+                        <input class="form-control" type="text" name="middlename" required>
 
                         <label for="lastname"><b>Last Name</b></label>
                         <input class="form-control" type="text" name="lastname" required>
